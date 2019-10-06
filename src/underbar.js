@@ -8,7 +8,7 @@
   // iterator when the user does not pass one in, this will be handy.
   _.identity = function(val) {
     /* START SOLUTION */
-
+return val ;
     /* END SOLUTION */
   };
 
@@ -27,6 +27,17 @@
   // return just the first element.
   _.first = function(array, n) {
     /* START SOLUTION */
+if(n===undefined){
+  return array[0];
+}else if (n>array.length){
+  return array;
+}else if (n<=array.length){
+  var tab= array.slice(0,n);
+    return  tab;
+  }else{
+    (!Array.isArray(array))
+    return [];
+  }
 
     /* END SOLUTION */
   };
@@ -35,7 +46,15 @@
   // last element.
   _.last = function(array, n) {
     /* START SOLUTION */
-
+    if(n===undefined){
+  return array[array.length-1];
+}else if((n<=array.length)&&(n>0)){
+  return array.slice(n-1);
+}else if (n>array.length){
+  return array;
+}else if(n<=0){
+  return [];
+}
     /* END SOLUTION */
   };
 
@@ -46,7 +65,17 @@
   // iterator function over each item in the input collection.
   _.each = function(collection, iterator) {
     /* START SOLUTION */
-
+ 
+ if(Array.isArray(collection)){
+    for(var i = 0; i < collection.length; i++){
+    iterator(collection[i], i, collection);
+    }
+  } else if(typeof collection === 'object'){
+    for(var key in collection){
+      iterator(collection[key], key, collection);
+    }
+  
+}
     /* END SOLUTION */
   };
 
@@ -54,6 +83,11 @@
   // is not present in the array.
   _.indexOf = function(array, target){
     /* START SOLUTION */
+    for (var i in array){
+     if (array[i]===target) {
+      return
+     }
+    }
 
     /* END SOLUTION */
   };
