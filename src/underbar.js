@@ -83,11 +83,15 @@ if(n===undefined){
   // is not present in the array.
   _.indexOf = function(array, target){
     /* START SOLUTION */
-    for (var i in array){
-     if (array[i]===target) {
-      return
-     }
-    }
+    var result = -1;
+
+    _.each(array, function(item, index) {
+      if (item === target && result === -1) {
+        result = index;
+      }
+    });
+
+    return result;
 
     /* END SOLUTION */
   };
@@ -95,7 +99,13 @@ if(n===undefined){
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
     /* START SOLUTION */
-
+ var result = [];
+    _.each(collection, function(item) {
+      if (test(item)) {
+        result.push(item);
+      }
+    });
+    return result;
     /* END SOLUTION */
   };
 
